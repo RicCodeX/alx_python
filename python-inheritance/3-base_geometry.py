@@ -1,15 +1,19 @@
-'''
-task 4 of the project
-'''
-class BaseGeometry:
-    """BaseGeometry class"""
+"""Task 3"""
+
+
+class BaseGeometryMeta(type):
+    """Meta Class for BAseGeometry"""
 
     def __dir__(self):
-        """Override default behavior of the dir() method."""
         attributes = super().__dir__()
-        list_to_return = []
-        for attr in attributes:
-            if attr != "__init_subclass__":
-                list_to_return.append(attr)
-        return list_to_return
-    
+        used_attr = [att for att in attributes if att != "__init_subclass__"]
+        return used_attr
+
+
+class BaseGeometry(metaclass=BaseGeometryMeta):
+    """This is a BaseGeometry Class"""
+
+    def __dir__(self):
+        attributes = super().__dir__()
+        used_attr = [att for att in attributes if att != "__init_subclass__"]
+        return used_attr
